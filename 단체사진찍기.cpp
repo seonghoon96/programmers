@@ -13,15 +13,15 @@ map<char, int> dic;
 int solution(int n, vector<string> data)
 {
     int answer = 0;
-
-    v.push_back('A');
-    v.push_back('C');
-    v.push_back('F');
-    v.push_back('J');
-    v.push_back('M');
-    v.push_back('N');
-    v.push_back('R');
-    v.push_back('T');
+    string v = "ACFJMNRT";
+    // v.push_back('A');
+    // v.push_back('C');
+    // v.push_back('F');
+    // v.push_back('J');
+    // v.push_back('M');
+    // v.push_back('N');
+    // v.push_back('R');
+    // v.push_back('T');
     do
     {
         for (int i = 0; i < v.size(); i++)
