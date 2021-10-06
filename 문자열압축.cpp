@@ -18,7 +18,7 @@ int solution(string s)
             for (int j = i; j < s.size(); j += i)
             {
                 string tmp2 = s.substr(j, i);
-                if (tmp1 == tmp2)
+                if (tmp1 == tmp2)   
                 {
                     tmp_cnt++;
                     continue;
