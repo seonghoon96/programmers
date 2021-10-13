@@ -5,42 +5,32 @@
 #include <cstring>
 using namespace std;
 
-map<string, int> name;
-map<string, string> par;
+map<string, int> dic;
+map<string, string> parent;
 
-void splitMoney(string s, int money)
+void splitMoney(string seller, int pay)
 {
-    string parent = par[s];
-    if (money < 10)
+    if (pay < 10 or seller == "-")
     {
-        name[s] += money;
+        dic[seller] += pay;
         return;
     }
-    name[s] += money - money / 10;
-    splitMoney(parent, money / 10);
+    dic[seller] += pay - pay / 10;
+    splitMoney(parent[seller], pay / 10);
 }
-
 vector<int> solution(vector<string> enroll, vector<string> referral, vector<string> seller, vector<int> amount)
 {
     vector<int> answer;
     for (int i = 0; i < enroll.size(); i++)
-        name.insert(pair<string, int>(enroll[i], 0));
-    for (int i = 0; i < referral.size(); i++)
-        par.insert(pair<string, string>(enroll[i], referral[i]));
-
-    for (int i = 0; i < seller.size(); i++)
     {
-        string name = seller[i];
-        splitMoney(name, amount[i] * 100);
+        parent[enroll[i]] = referral[i];
+        dic[enroll[i]] = 0;
     }
+    for (int i = 0; i < seller.size(); i++)
+        splitMoney(seller[i], amount[i] * 100);
 
     for (int i = 0; i < enroll.size(); i++)
-    {
-        answer.push_back(name[enroll[i]]);
-    }
-    // 조직 구도 트리 생성
-
-    // 수익별로 추천인에게 분배
+        answer.push_back(dic[enroll[i]]);
 
     return answer;
 }
